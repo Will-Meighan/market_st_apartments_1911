@@ -16,6 +16,7 @@ class BuildingTest < Minitest::Test
 
     @renter1 = Renter.new("Spencer")
     @renter2 = Renter.new("Jessie")
+    @renter2 = Renter.new("Max")
   end
 
   def test_it_exists
@@ -51,6 +52,12 @@ class BuildingTest < Minitest::Test
     @unit1.add_renter(@renter2)
 
     assert_equal @renter2, @building.renter_with_highest_rent
+
+    @unit3.add_renter(@renter3)
+
+    assert_equal @renter2, @building.renter_with_highest_rent
   end
+
+  # def test_it_can_calculate_annual_breakdown
 
 end
