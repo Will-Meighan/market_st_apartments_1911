@@ -16,4 +16,10 @@ class Building
     rent_totals.sum / rent_totals.length.to_f
   end
 
+  def renter_with_highest_rent
+    occupied_units = @units.find_all { |unit| unit.renter != nil }
+    occupied_unit_with_highest_rent = occupied_units.max_by { |unit| unit.monthly_rent }
+    occupied_unit_with_highest_rent.renter
+  end
+
 end
