@@ -64,12 +64,15 @@ class BuildingTest < Minitest::Test
     @building.add_unit(@unit3)
 
     @unit2.add_renter(@renter1)
+    require "pry"; binding.pry
 
-    assert_equal {"Spencer" => 11988}, @building.annual_breakdown
+    expected = {"Spencer" => 11988}
+    assert_equal expected, @building.annual_breakdown
 
     @unit1.add_renter(@renter2)
 
-    assert_equal {"Jessie" => 14400, "Spencer" => 11988}, @building.annual_breakdown
+    expected2 = {"Jessie" => 14400, "Spencer" => 11988}
+    assert_equal expected2, @building.annual_breakdown
   end
 
 end
