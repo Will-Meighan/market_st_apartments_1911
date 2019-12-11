@@ -16,7 +16,7 @@ class BuildingTest < Minitest::Test
 
     @renter1 = Renter.new("Spencer")
     @renter2 = Renter.new("Jessie")
-    @renter2 = Renter.new("Max")
+    @renter3 = Renter.new("Max")
   end
 
   def test_it_exists
@@ -64,7 +64,6 @@ class BuildingTest < Minitest::Test
     @building.add_unit(@unit3)
 
     @unit2.add_renter(@renter1)
-    require "pry"; binding.pry
 
     expected = {"Spencer" => 11988}
     assert_equal expected, @building.annual_breakdown
