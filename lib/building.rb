@@ -22,4 +22,18 @@ class Building
     occupied_unit_with_highest_rent.renter
   end
 
+  def annual_breakdown
+    occupied_units = @units.find_all { |unit| unit.renter != nil }
+
+    occupied_units.reduce({}) do |hash, char|
+      hash[char.renter.name] = (char.monthly_rent * 12)
+      hash
+      end
+
+
+
+    # occupied_units.map { |unit| unit.renter.name }
+    # name
+  end
+
 end
