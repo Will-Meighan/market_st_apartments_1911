@@ -40,6 +40,20 @@ class BuildingTest < Minitest::Test
     assert_equal  1099.5, @building.average_rent
   end
 
+  def test_it_can_return_occupied_units
+    @building.add_unit(@unit1)
+    @building.add_unit(@unit2)
+    @building.add_unit(@unit3)
+
+    @unit2.add_renter(@renter1)
+
+    assert_equal [@unit2], @building.occupied_units
+
+    @unit3.add_renter(@renter2)
+
+    assert_equal [@unit2, @unit3], @building.occupied_units
+  end
+
   def test_it_find_renter_with_highest_rent
     @building.add_unit(@unit1)
     @building.add_unit(@unit2)

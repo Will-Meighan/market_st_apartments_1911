@@ -16,24 +16,20 @@ class Building
     rent_totals.sum / rent_totals.length.to_f
   end
 
+  def occupied_units
+    @units.find_all { |unit| unit.renter != nil }
+  end
+
   def renter_with_highest_rent
-    occupied_units = @units.find_all { |unit| unit.renter != nil }
     occupied_unit_with_highest_rent = occupied_units.max_by { |unit| unit.monthly_rent }
     occupied_unit_with_highest_rent.renter
   end
 
   def annual_breakdown
-    occupied_units = @units.find_all { |unit| unit.renter != nil }
-
     occupied_units.reduce({}) do |hash, char|
       hash[char.renter.name] = (char.monthly_rent * 12)
       hash
-      end
-
-
-
-    # occupied_units.map { |unit| unit.renter.name }
-    # name
+    end
   end
 
 end
