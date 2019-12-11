@@ -58,6 +58,18 @@ class BuildingTest < Minitest::Test
     assert_equal @renter2, @building.renter_with_highest_rent
   end
 
-  # def test_it_can_calculate_annual_breakdown
+  def test_it_can_calculate_annual_breakdown
+    @building.add_unit(@unit1)
+    @building.add_unit(@unit2)
+    @building.add_unit(@unit3)
+
+    @unit2.add_renter(@renter1)
+
+    assert_equal {"Spencer" => 11988}, @building.annual_breakdown
+
+    @unit1.add_renter(@renter2)
+
+    assert_equal {"Jessie" => 14400, "Spencer" => 11988}, @building.annual_breakdown
+  end
 
 end
